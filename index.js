@@ -38,17 +38,9 @@ await autoScroll(page);
 const links = await page.$$('.thumb a');
 console.log(`Images count: ${links.length}`);
 
-var found = false;
-
 for(var i=0; i<links.length; i++) {
     let linkEl = links[i];
     let linkUrl = await page.evaluate(el => el.getAttribute("href"), linkEl);
-
-    if (!found && linkUrl !== '//postimg.cc/9RHY9DXf') {
-        continue;
-    } else {
-        found = true;
-    }
 
     if (linkUrl.startsWith('//')) {
         linkUrl = `https://${linkUrl}`;
